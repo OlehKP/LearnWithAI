@@ -8,22 +8,26 @@
   </head>
   <body>
     <div id="app">
-      <a href="https://vuejs.org" @click.prevent="showAlert()">Посилання</a>
+      <input
+        type="text"
+        @keydown.enter="showText($event)"
+        @keydown.esc="clearText($event)"
+      />
     </div>
     <script>
       const { createApp } = Vue;
 
       createApp({
         setup() {
-          let hasShown = false;
-          function showAlert() {
-            if (hasShown == false) {
-              alert("Ich lerne Vue!");
-              hasShown = true;
-            }
+          function showText(event) {
+            console.log(event.target.value);
+          }
+          function clearText(event) {
+            event.target.value = "";
           }
           return {
-            showAlert,
+            showText,
+            clearText,
           };
         },
       }).mount("#app");
