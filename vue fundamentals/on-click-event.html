@@ -3,16 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Profile</title>
+    <title>Age Comparison</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
     <div id="app">
-      <p>Name: {{user.name}}</p>
-      <p>Age: {{user.age}}</p>
-      <button @click="changeBirthday">Birthday</button>
-      <button @click="changeName">Change Name</button>
-      <button @click="reset">Reset</button>
+      <p>Current Age: {{user.age}}</p>
+      <p>Initial Age: {{initialAge}}</p>
+      <button @click="changeUserAge">Birthday</button>
     </div>
     <script>
       const { createApp, reactive } = Vue;
@@ -20,25 +18,17 @@
       createApp({
         setup() {
           const user = reactive({
-            name: "Oleh",
             age: 19,
           });
-          function changeBirthday() {
+          let initialAge = user.age;
+          function changeUserAge() {
             user.age++;
-          }
-          function changeName() {
-            user.name = "Jonas";
-          }
-          function reset() {
-            user.name = "Oleh";
-            user.age = 19;
           }
 
           return {
             user,
-            changeBirthday,
-            changeName,
-            reset,
+            changeUserAge,
+            initialAge,
           };
         },
       }).mount("#app");
