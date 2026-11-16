@@ -8,17 +8,19 @@
   </head>
   <body>
     <div id="app">
-      <a href="https://vuejs.org" @click.prevent.once="showAlert()"
-        >Посилання</a
-      >
+      <a href="https://vuejs.org" @click.prevent="showAlert()">Посилання</a>
     </div>
     <script>
       const { createApp } = Vue;
 
       createApp({
         setup() {
+          let hasShown = false;
           function showAlert() {
-            alert("Ich lerne Vue!");
+            if (hasShown == false) {
+              alert("Ich lerne Vue!");
+              hasShown = true;
+            }
           }
           return {
             showAlert,
