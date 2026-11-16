@@ -8,36 +8,32 @@
   </head>
   <body>
     <div id="app">
-      <form @submit.prevent="showInputName">
-        <input
-          type="text"
-          @input="saveInputName"
-          @keydown.esc="clearInputField"
-        />
-        <button type="submit">Привітатися</button>
-      </form>
+      <h2>{{count}}</h2>
+      <button @click="increase">+</button>
+      <button @click="reduce">-</button>
+      <button @click="clearCount">clear</button>
     </div>
     <script>
-      const { createApp } = Vue;
-      let inputValue = "";
-      function saveInputName(event) {
-        inputValue = event.target.value;
-      }
-      function showInputName() {
-        if (inputValue.trim() !== "") {
-          alert(inputValue);
-        }
-      }
-      function clearInputField(event) {
-        event.target.value = "";
-        inputValue = "";
-      }
+      const { createApp, ref } = Vue;
+
       createApp({
         setup() {
+          let count = ref(0);
+          function increase() {
+            count.value++;
+          }
+          function reduce() {
+            count.value--;
+          }
+          function clearCount() {
+            count.value = 0;
+          }
+
           return {
-            saveInputName,
-            showInputName,
-            clearInputField,
+            count,
+            increase,
+            reduce,
+            clearCount,
           };
         },
       }).mount("#app");
