@@ -8,22 +8,22 @@
   </head>
   <body>
     <div id="app">
-      <button v-on:click="seyHello()">Hello</button>
+      <button @click="sayHello()">Hallo</button>
     </div>
+    <script>
+      const { createApp } = Vue;
+
+      createApp({
+        setup() {
+          function sayHello() {
+            alert("Ich lerne Vue!");
+          }
+
+          return {
+            sayHello,
+          };
+        },
+      }).mount("#app");
+    </script>
   </body>
-  <script>
-    const { createApp } = Vue;
-
-    createApp({
-      setup() {
-        function seyHello() {
-          alert("Ich lerne Vue!");
-        }
-
-        return {
-          seyHello,
-        };
-      },
-    }).mount("#app");
-  </script>
 </html>
