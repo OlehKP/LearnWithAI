@@ -15,23 +15,23 @@
       <button @click="reset">Reset</button>
     </div>
     <script>
-      const { createApp, ref } = Vue;
+      const { createApp, reactive } = Vue;
 
       createApp({
         setup() {
-          const user = ref({
+          const user = reactive({
             name: "Oleh",
             age: 19,
           });
           function changeBirthday() {
-            user.value.age++;
+            user.age++;
           }
           function changeName() {
-            user.value.name = "Jonas";
+            user.name = "Jonas";
           }
           function reset() {
-            user.value.name = "Oleh";
-            user.value.age = 19;
+            user.name = "Oleh";
+            user.age = 19;
           }
 
           return {
