@@ -8,20 +8,18 @@
   </head>
   <body>
     <div id="app">
-      <button @click="sayHello('Oleh')">Oleh</button>
-      <button @click="sayHello('Jonas')">Jonas</button>
+      <input type="text" v-on:input="showText" />
     </div>
     <script>
       const { createApp } = Vue;
 
       createApp({
         setup() {
-          function sayHello(name) {
-            alert("Hallo " + name + "!");
+          function showText(event) {
+            console.log(event.target.value);
           }
-
           return {
-            sayHello,
+            showText,
           };
         },
       }).mount("#app");
