@@ -8,18 +8,20 @@
   </head>
   <body>
     <div id="app">
-      <input type="text" v-on:input="showText" />
+      <a href="https://vuejs.org" @click.prevent.once="showAlert()"
+        >Посилання</a
+      >
     </div>
     <script>
       const { createApp } = Vue;
 
       createApp({
         setup() {
-          function showText(event) {
-            console.log(event.target.value);
+          function showAlert() {
+            alert("Ich lerne Vue!");
           }
           return {
-            showText,
+            showAlert,
           };
         },
       }).mount("#app");
