@@ -11,6 +11,7 @@
       <h2>{{count}}</h2>
       <button @click="increase">+</button>
       <button @click="reduce">-</button>
+      <button @click="increaseLater">+1 через 2 секунди</button>
       <button @click="clearCount">clear</button>
     </div>
     <script>
@@ -18,7 +19,12 @@
 
       createApp({
         setup() {
-          let count = ref(0);
+          const count = ref(0);
+          function increaseLater() {
+            setTimeout(() => {
+              count.value++;
+            }, 2000);
+          }
           function increase() {
             count.value++;
           }
@@ -34,6 +40,7 @@
             increase,
             reduce,
             clearCount,
+            increaseLater,
           };
         },
       }).mount("#app");
