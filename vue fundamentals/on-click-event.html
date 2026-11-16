@@ -8,17 +8,19 @@
   </head>
   <body>
     <div id="app">
-      <input
-        type="text"
-        @input="saveInputName"
-        @keydown.esc="clearInputField"
-        @keyup.enter="showInputName"
-      />
-      <button @click="showInputName">Привітатися</button>
+      <form @submit.prevent="showInputName">
+        <input
+          type="text"
+          @input="saveInputName"
+          @keydown.esc="clearInputField"
+          @keyup.enter="showInputName"
+        />
+        <button type="submit">Привітатися</button>
+      </form>
     </div>
     <script>
       const { createApp } = Vue;
-      let inputValue = " ";
+      let inputValue = "";
       function saveInputName(event) {
         inputValue = event.target.value;
       }
@@ -28,8 +30,8 @@
         }
       }
       function clearInputField(event) {
-        event.target.value = " ";
-        inputValue = " ";
+        event.target.value = "";
+        inputValue = "";
       }
       createApp({
         setup() {
