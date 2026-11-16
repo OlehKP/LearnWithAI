@@ -8,15 +8,16 @@
   </head>
   <body>
     <div id="app">
-      <button @click="sayHello()">Hallo</button>
+      <button @click="sayHello('Oleh')">Oleh</button>
+      <button @click="sayHello('Jonas')">Jonas</button>
     </div>
     <script>
       const { createApp } = Vue;
 
       createApp({
         setup() {
-          function sayHello() {
-            alert("Ich lerne Vue!");
+          function sayHello(name) {
+            alert("Hallo " + name + "!");
           }
 
           return {
