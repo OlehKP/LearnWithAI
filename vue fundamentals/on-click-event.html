@@ -8,19 +8,36 @@
   </head>
   <body>
     <div id="app">
-      <button @click="sayHello()">Hallo</button>
+      <form @submit.prevent="showInputName">
+        <input
+          type="text"
+          @input="saveInputName"
+          @keydown.esc="clearInputField"
+        />
+        <button type="submit">Привітатися</button>
+      </form>
     </div>
     <script>
       const { createApp } = Vue;
-
+      let inputValue = "";
+      function saveInputName(event) {
+        inputValue = event.target.value;
+      }
+      function showInputName() {
+        if (inputValue.trim() !== "") {
+          alert(inputValue);
+        }
+      }
+      function clearInputField(event) {
+        event.target.value = "";
+        inputValue = "";
+      }
       createApp({
         setup() {
-          function sayHello() {
-            alert("Ich lerne Vue!");
-          }
-
           return {
-            sayHello,
+            saveInputName,
+            showInputName,
+            clearInputField,
           };
         },
       }).mount("#app");
