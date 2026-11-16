@@ -3,44 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vue</title>
+    <title>User Profile</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
     <div id="app">
-      <h2>{{count}}</h2>
-      <button @click="increase">+</button>
-      <button @click="reduce">-</button>
-      <button @click="increaseLater">+1 через 2 секунди</button>
-      <button @click="clearCount">clear</button>
+      <p>Name: {{user.name}}</p>
+      <p>Age: {{user.age}}</p>
+      <button @click="changeBirthday">Birthday</button>
+      <button @click="changeName">Change Name</button>
+      <button @click="reset">Reset</button>
     </div>
     <script>
       const { createApp, ref } = Vue;
 
       createApp({
         setup() {
-          const count = ref(0);
-          function increaseLater() {
-            setTimeout(() => {
-              count.value++;
-            }, 2000);
+          const user = ref({
+            name: "Oleh",
+            age: 19,
+          });
+          function changeBirthday() {
+            user.value.age++;
           }
-          function increase() {
-            count.value++;
+          function changeName() {
+            user.value.name = "Jonas";
           }
-          function reduce() {
-            count.value--;
-          }
-          function clearCount() {
-            count.value = 0;
+          function reset() {
+            user.value.name = "Oleh";
+            user.value.age = "19";
           }
 
           return {
-            count,
-            increase,
-            reduce,
-            clearCount,
-            increaseLater,
+            user,
+            changeBirthday,
+            changeName,
+            reset,
           };
         },
       }).mount("#app");
