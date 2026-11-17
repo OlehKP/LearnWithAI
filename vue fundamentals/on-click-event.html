@@ -9,11 +9,22 @@
   <body>
     <div id="app">
       <label for="firstName">First Name: </label>
-      <input id="firstName" type="text" v-model="person.firstName" />
+      <input id="firstName" type="text" v-model.trim="person.firstName" />
+      <br />
+      <br />
       <label for="lastName">Last Name:</label>
-      <input id="lastName" type="text" v-model="person.lastName" />
+      <input id="lastName" type="text" v-model.trim="person.lastName" />
+      <br /><br />
+      <label for="age">Age: </label>
+      <input id="age" type="text" v-model.number="person.age" />
+      <p>Age Next Year: {{ person.age !== "" ? person.age + 1 : "" }}</p>
       <p>Full Name: {{person.firstName}} {{person.lastName}}</p>
-      <button @click="resetName">Reset</button>
+      <label for="Bio">Bio</label>
+      <input id="Bio" type="text" v-model.lazy="person.bio" /><br />
+      <br />
+      <p>Bio Preview: {{person.bio}}</p>
+
+      <button @click="resetName">Reset</button><br /><br />
     </div>
     <script>
       const { createApp, reactive } = Vue;
@@ -21,12 +32,16 @@
       createApp({
         setup() {
           const person = reactive({
-            firstName: "Oleh",
-            lastName: "Kovalchuk",
+            firstName: "",
+            lastName: "",
+            age: "",
+            bio: "",
           });
           function resetName() {
-            person.firstName = "Oleh";
-            person.lastName = "Kovalchuk";
+            person.firstName = "";
+            person.lastName = "";
+            person.age = "";
+            person.bio = "";
           }
 
           return {
