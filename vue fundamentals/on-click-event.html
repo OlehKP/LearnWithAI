@@ -9,9 +9,9 @@
   <body>
     <div id="app">
       <label for="firstName">First Name: </label>
-      <input name="firstName" type="text" v-model="person.firstName" />
-      <label for="lastName">last Name:</label>
-      <input type="text" v-model="person.lastName" />
+      <input id="firstName" type="text" v-model="person.firstName" />
+      <label for="lastName">Last Name:</label>
+      <input id="lastName" type="text" v-model="person.lastName" />
       <p>Full Name: {{person.firstName}} {{person.lastName}}</p>
       <button @click="resetName">Reset</button>
     </div>
@@ -25,7 +25,8 @@
             lastName: "Kovalchuk",
           });
           function resetName() {
-            ((person.firstName = "Oleh"), (person.lastName = "Kovalchuk"));
+            person.firstName = "Oleh";
+            person.lastName = "Kovalchuk";
           }
 
           return {
