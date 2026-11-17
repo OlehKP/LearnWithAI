@@ -3,32 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Age Comparison</title>
+    <title>Profile Editor</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
     <div id="app">
-      <p>Current Age: {{user.age}}</p>
-      <p>Initial Age: {{initialAge}}</p>
-      <button @click="changeUserAge">Birthday</button>
+      <label for="firstName">First Name: </label>
+      <input name="firstName" type="text" v-model="person.firstName" />
+      <label for="lastName">last Name:</label>
+      <input type="text" v-model="person.lastName" />
+      <p>Full Name: {{person.firstName}} {{person.lastName}}</p>
+      <button @click="resetName">Reset</button>
     </div>
     <script>
       const { createApp, reactive } = Vue;
 
       createApp({
         setup() {
-          const user = reactive({
-            age: 19,
+          const person = reactive({
+            firstName: "Oleh",
+            lastName: "Kovalchuk",
           });
-          let initialAge = user.age;
-          function changeUserAge() {
-            user.age++;
+          function resetName() {
+            ((person.firstName = "Oleh"), (person.lastName = "Kovalchuk"));
           }
 
           return {
-            user,
-            changeUserAge,
-            initialAge,
+            person,
+            resetName,
           };
         },
       }).mount("#app");
