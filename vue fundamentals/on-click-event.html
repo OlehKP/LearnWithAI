@@ -3,41 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vue</title>
+    <title>Age Comparison</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
     <div id="app">
-      <form @submit.prevent="showInputName">
-        <input
-          type="text"
-          @input="saveInputName"
-          @keydown.esc="clearInputField"
-        />
-        <button type="submit">Привітатися</button>
-      </form>
+      <p>Current Age: {{user.age}}</p>
+      <p>Initial Age: {{initialAge}}</p>
+      <button @click="changeUserAge">Birthday</button>
     </div>
     <script>
-      const { createApp } = Vue;
-      let inputValue = "";
-      function saveInputName(event) {
-        inputValue = event.target.value;
-      }
-      function showInputName() {
-        if (inputValue.trim() !== "") {
-          alert(inputValue);
-        }
-      }
-      function clearInputField(event) {
-        event.target.value = "";
-        inputValue = "";
-      }
+      const { createApp, reactive } = Vue;
+
       createApp({
         setup() {
+          const user = reactive({
+            age: 19,
+          });
+          let initialAge = user.age;
+          function changeUserAge() {
+            user.age++;
+          }
+
           return {
-            saveInputName,
-            showInputName,
-            clearInputField,
+            user,
+            changeUserAge,
+            initialAge,
           };
         },
       }).mount("#app");
