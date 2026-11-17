@@ -17,7 +17,10 @@
       <br /><br />
       <label for="age">Age: </label>
       <input id="age" type="text" v-model.number="person.age" />
-      <p>Age Next Year: {{ person.age !== "" ? person.age + 1 : "" }}</p>
+      <p>
+        Age Next Year: {{ typeof(person.age) ==="number" ? person.age + 1 : ""
+        }}
+      </p>
       <p>Full Name: {{person.firstName}} {{person.lastName}}</p>
       <label for="Bio">Bio</label>
       <input id="Bio" type="text" v-model.lazy="person.bio" /><br />
