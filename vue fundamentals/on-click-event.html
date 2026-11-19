@@ -18,7 +18,7 @@
       <h2>Total: {{totalPrice}}</h2>
     </div>
     <script>
-      const { createApp, ref, computed } = Vue;
+      const { createApp, ref, computed, watch } = Vue;
 
       createApp({
         setup() {
@@ -28,6 +28,10 @@
           const totalPrice = computed(() => {
             console.log("Total calculated");
             return price.value * quantity.value;
+          });
+
+          watch(price, (newValue, oldValue) => {
+            console.log("Price changed from", oldValue, "to", newValue);
           });
 
           return {
