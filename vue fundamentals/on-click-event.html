@@ -8,48 +8,26 @@
   </head>
   <body>
     <div id="app">
-      <label for="firstName">First Name: </label>
-      <input id="firstName" type="text" v-model.trim="person.firstName" />
-      <br />
-      <br />
-      <label for="lastName">Last Name:</label>
-      <input id="lastName" type="text" v-model.trim="person.lastName" />
-      <br /><br />
-      <label for="age">Age: </label>
-      <input id="age" type="text" v-model.number="person.age" />
-      <p>
-        Age Next Year: {{ typeof(person.age) ==="number" ? person.age + 1 : ""
-        }}
-      </p>
-      <p>Full Name: {{person.firstName}} {{person.lastName}}</p>
-      <label for="Bio">Bio</label>
-      <input id="Bio" type="text" v-model.lazy="person.bio" /><br />
-      <br />
-      <p>Bio Preview: {{person.bio}}</p>
-
-      <button @click="resetName">Reset</button><br /><br />
+      <p>{{counter}}</p>
+      <button @click="counter++">Increase Counter</button>
+      <h2>Total: {{totalPrice}}</h2>
     </div>
     <script>
-      const { createApp, reactive } = Vue;
+      const { createApp, ref, computed } = Vue;
 
       createApp({
         setup() {
-          const person = reactive({
-            firstName: "",
-            lastName: "",
-            age: "",
-            bio: "",
+          const price = ref(10);
+          const quantity = ref(2);
+          const counter = ref(0);
+          const totalPrice = computed(() => {
+            console.log("Total calculated");
+            return price.value * quantity.value;
           });
-          function resetName() {
-            person.firstName = "";
-            person.lastName = "";
-            person.age = "";
-            person.bio = "";
-          }
 
           return {
-            person,
-            resetName,
+            totalPrice,
+            counter,
           };
         },
       }).mount("#app");
