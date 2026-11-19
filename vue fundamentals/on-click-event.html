@@ -9,7 +9,12 @@
   <body>
     <div id="app">
       <p>{{counter}}</p>
-      <button @click="counter++">Increase Counter</button>
+
+      <button @click="counter++">Increase Counter</button><br /><br />
+      <label for="price">Price</label><br />
+      <input id="price" type="number" v-model.lazy="price" /><br /><br />
+      <label for="quantity">quantity</label> <br />
+      <input id="quantity" type="number" v-model.lazy="quantity" />
       <h2>Total: {{totalPrice}}</h2>
     </div>
     <script>
@@ -28,6 +33,8 @@
           return {
             totalPrice,
             counter,
+            price,
+            quantity,
           };
         },
       }).mount("#app");
