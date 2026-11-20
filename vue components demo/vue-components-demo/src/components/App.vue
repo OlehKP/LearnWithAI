@@ -1,13 +1,11 @@
 <template>
   <div class="container">
     <div>{{ message }}</div>
-    <Contact></Contact>
+    <ProductCard product-name="Iphone 18" price="1500"></ProductCard>
   </div>
-  <button-counter></button-counter>
 </template>
 <script setup>
-import Contact from "./Contact.vue";
-import ButtonCounter from "./ButtonCounter.vue";
+import ProductCard from "./ProductCard.vue";
 const message = "Hello Vue";
 </script>
 <style scoped></style>

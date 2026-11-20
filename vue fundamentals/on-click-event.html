@@ -3,15 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Age Comparison</title>
+    <title>Profile Editor</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
     <div id="app">
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       <p>Current Age: {{user.age}}</p>
       <p>Initial Age: {{initialAge}}</p>
       <button @click="changeUserAge">Birthday</button>
+=======
+      <p>{{counter}}</p>
+
+      <button @click="counter++">Increase Counter</button><br /><br />
+      <label for="price">Price</label><br />
+      <input id="price" type="number" v-model.lazy="price" /><br /><br />
+      <label for="quantity">quantity</label> <br />
+      <input id="quantity" type="number" v-model.lazy="quantity" />
+      <h2>Total: {{totalPrice}}</h2>
+>>>>>>> cffe1addb6d9200c8580a82ea7dcc63f0de14097
     </div>
 =======
 <p>Delivery method</p>
@@ -27,22 +38,27 @@
 </label>
 >>>>>>> Stashed changes
     <script>
-      const { createApp, reactive } = Vue;
+      const { createApp, ref, computed, watch } = Vue;
 
       createApp({
         setup() {
-          const user = reactive({
-            age: 19,
+          const price = ref(10);
+          const quantity = ref(2);
+          const counter = ref(0);
+          const totalPrice = computed(() => {
+            console.log("Total calculated");
+            return price.value * quantity.value;
           });
-          let initialAge = user.age;
-          function changeUserAge() {
-            user.age++;
-          }
+
+          watch(price, (newValue, oldValue) => {
+            console.log("Price changed from", oldValue, "to", newValue);
+          });
 
           return {
-            user,
-            changeUserAge,
-            initialAge,
+            totalPrice,
+            counter,
+            price,
+            quantity,
           };
         },
       }).mount("#app");
