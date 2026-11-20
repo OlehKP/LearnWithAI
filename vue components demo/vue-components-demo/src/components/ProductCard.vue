@@ -3,5 +3,14 @@
   <p>Price: {{ price }} EUR</p>
 </template>
 <script setup>
-defineProps(["productName", "price"]);
+defineProps({
+  productName: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+});
 </script>
