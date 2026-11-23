@@ -1,1 +1,4 @@
-<template>Hello World</template>
+<template>
+  Hello World
+  <RouterView></RouterView>
+</template>
