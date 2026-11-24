@@ -48,7 +48,7 @@
 </template>
 
 <script setup>
-import { useGameStore } from "../store/gameStore";
+import { useGameStore } from "../store/gameіtore";
 
 function Increment() {
   gameStore.setNextAttack();
