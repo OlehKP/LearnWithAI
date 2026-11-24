@@ -1,14 +1,14 @@
 <script setup>
 import { reactive, onMounted } from "vue";
 import axios from "axios";
-const userObj = reactive({
-  users: [],
+
+const postObj = reactive({
+  postList: [],
 });
 
 onMounted(() => {
-  axios.get("https://jsonplaceholder.typicode.com/users").then((response) => {
-    console.log(response.data);
-    userObj.users = response.data;
+  axios.get("http://localhost:3000/posts").then((response) => {
+    postObj.postList = response.data;
   });
 });
 </script>
@@ -16,9 +16,9 @@ onMounted(() => {
 <template>
   <div>RequestOPedia</div>
   <hr />
-  <div v-for="user in userObj.users" :key="user.id">
-    <p>{{ user.name }}</p>
-    <p>{{ user.email }}</p>
-    <hr />
+
+  <div v-for="post in postObj.postList" :key="post.id">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.body }}</p>
   </div>
 </template>
